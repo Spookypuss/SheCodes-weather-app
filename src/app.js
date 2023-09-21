@@ -52,6 +52,8 @@ function displayCurrent(response) {
   description.innerHTML = response.data.condition.description;
   let humidity = document.querySelector("#humidity");
   humidity.innerHTML = response.data.temperature.humidity;
+  let windSpeed = document.querySelector("#wind-speed");
+  windSpeed.innerHTML = response.data.wind.speed;
   currentTime.innerHTML = formatDate(response.data.time * 1000);
   let currentIcon = document.querySelector(".current-icon");
   currentIcon.setAttribute("src", response.data.condition.icon_url);
