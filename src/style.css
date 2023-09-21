@@ -17,6 +17,10 @@ ul {
   padding: 0;
 }
 
+li:first-letter {
+  text-transform: capitalize;
+}
+
 .current-weather {
   justify-content: right; /*justifies within flexbox*/
   align-items: flex-start; /*Does this do anything??*/
@@ -38,7 +42,8 @@ ul {
 }
 
 .weather-frame {
-  border: 1px solid #e3e3e3;
+  background: #fff;
+  border: 1px solid #5d5d5d;
   border-radius: 5px;
   margin: 30px auto;
   max-width: 600px;

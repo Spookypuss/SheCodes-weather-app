@@ -45,7 +45,6 @@ function formatDate(timestamp) {
 function displayCurrent(response) {
   let location = document.querySelector("#location-heading");
   location.innerHTML = response.data.city;
-  console.log(response.data);
   let temperature = Math.round(response.data.temperature.current); // gets current temperature and rounds to integer
   let currentTemperature = document.querySelector("#current-temperature");
   currentTemperature.innerHTML = temperature;
@@ -59,8 +58,19 @@ function displayCurrent(response) {
   currentIcon.setAttribute("alt", response.data.condition.description);
 }
 
-let apiKey = "acbbefb303a70144ef2f13t2a94oef9a";
-let cityName = "Paris";
-let endpoint = `https://api.shecodes.io/weather/v1/current?query=${cityName}&key=${apiKey}&units=metric`;
+function searchCity(event) {
+  event.preventDefault();
+  let searchInput = document.querySelector("#search-input-text");
+  let cityName = searchInput.value;
+  cityName = cityName.trim();
+  cityName = cityName.toLowerCase();
 
-axios.get(endpoint).then(displayCurrent); // how the hell do you call it?!
+  //console.log(cityName);
+  let apiKey = "acbbefb303a70144ef2f13t2a94oef9a";
+  let endpoint = `https://api.shecodes.io/weather/v1/current?query=${cityName}&key=${apiKey}&units=metric`;
+
+  axios.get(endpoint).then(displayCurrent);
+}
+
+let searchForm = document.querySelector("#search-form");
+searchForm.addEventListener("submit", searchCity);
