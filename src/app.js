@@ -76,3 +76,11 @@ function searchCity(event) {
 
 let searchForm = document.querySelector("#search-form");
 searchForm.addEventListener("submit", searchCity);
+
+// dark mode toggle
+
+// add class (theme) to href to style sheet
+// define switch (document selector)
+// add event listener to switch
+// if theme is currently light, switch to dark
+// else switch to light theme

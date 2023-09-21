@@ -26,7 +26,7 @@ li:first-letter {
   text-transform: capitalize;
 }
 
-.current-weather {
+.d-flex {
   justify-content: right; /*justifies within flexbox*/
   align-items: flex-start; /*Does this do anything??*/
 }
@@ -34,6 +34,10 @@ li:first-letter {
 .daily {
   margin-top: 10px;
   text-align: center;
+}
+
+.dark-mode {
+  justify-content: right;
 }
 
 .top-bar {
@@ -66,4 +70,8 @@ li:first-letter {
 
 #current-description {
   font-weight: 600;
+}
+
+#location-heading {
+  margin-top: 20px;
 }
