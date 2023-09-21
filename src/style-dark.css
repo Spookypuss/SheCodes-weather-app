@@ -1,7 +1,7 @@
 /* Bootstrap overwriting*/
 body {
   color: #fff;
-  background: #121212;
+  background: #262626;
 }
 
 h1 {
@@ -62,4 +62,8 @@ li:first-letter {
   font-size: 64px;
   font-weight: 300;
   line-height: 100px;
+}
+
+#current-description {
+  font-weight: 600;
 }

@@ -62,3 +62,7 @@ li:first-letter {
   font-weight: 300;
   line-height: 100px;
 }
+
+#current-description {
+  font-weight: 600;
+}
