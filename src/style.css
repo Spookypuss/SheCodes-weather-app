@@ -1,0 +1,56 @@
+/* Bootstrap overwriting*/
+body {
+  color: #5d5d5d;
+}
+
+h1 {
+  font-size: 24px;
+}
+
+small {
+  font-family: monospace;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.current-weather {
+  justify-content: right; /*justifies within flexbox*/
+  align-items: flex-start; /*Does this do anything??*/
+}
+
+.daily {
+  margin-top: 10px;
+  text-align: center;
+}
+
+.top-bar {
+  padding-bottom: 10px;
+}
+
+.units {
+  font-size: 16px;
+  position: relative;
+  top: -32px;
+}
+
+.weather-frame {
+  border: 1px solid #e3e3e3;
+  border-radius: 5px;
+  margin: 30px auto;
+  max-width: 600px;
+  padding: 20px;
+}
+
+.current-icon {
+  font-size: 64px;
+}
+
+#current-temperature {
+  font-size: 64px;
+  font-weight: 300;
+  line-height: 100px;
+}
