@@ -78,9 +78,18 @@ let searchForm = document.querySelector("#search-form");
 searchForm.addEventListener("submit", searchCity);
 
 // dark mode toggle
+function switchTheme() {
+  if (theme.getAttribute("href") === "src/style.css") {
+    theme.href = "src/style-dark.css";
+  } else {
+    theme.href = "src/style.css";
+  }
+}
 
-// add class (theme) to href to style sheet
-// define switch (document selector)
+let themeSwitch = document.querySelector("#flexSwitchCheckDefault");
+let theme = document.querySelector("#theme-link");
+
+themeSwitch.addEventListener("click", switchTheme);
 // add event listener to switch
 // if theme is currently light, switch to dark
 // else switch to light theme
