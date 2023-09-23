@@ -25,6 +25,10 @@ li:first-letter {
   text-transform: capitalize;
 }
 
+.current-icon {
+  font-size: 64px;
+}
+
 .d-flex {
   justify-content: right; /*justifies within flexbox*/
   align-items: flex-start; /*Does this do anything??*/
@@ -61,8 +65,15 @@ li:first-letter {
   padding: 20px;
 }
 
-.current-icon {
-  font-size: 64px;
+.units .active {
+  /* hides active unit link */
+  color: #5d5d5d;
+  cursor: default;
+  text-decoration: none;
+}
+
+.units .active:hover {
+  text-decoration: none;
 }
 
 #current-temperature {
