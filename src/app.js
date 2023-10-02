@@ -40,6 +40,7 @@ function formatDate(timestamp) {
 
 // display response data
 function displayCurrent(response) {
+  console.log(response.data.coordinates);
   let location = document.querySelector("#location-heading");
   location.innerHTML = response.data.city;
   celciusTemperature = response.data.temperature.current; //updates celcius data (defined as null globally) to response data
