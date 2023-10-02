@@ -26,6 +26,14 @@ li:first-letter {
   text-transform: capitalize;
 }
 
+.current-icon {
+  font-size: 64px;
+}
+
+.daily-icon {
+  width: 50px;
+}
+
 .d-flex {
   justify-content: right; /*justifies within flexbox*/
   align-items: flex-start; /*Does this do anything??*/
