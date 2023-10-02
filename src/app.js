@@ -76,8 +76,8 @@ forecastDayFour.innerHTML = dayFour;
 let forecastDayFive = document.querySelector(".day-five");
 forecastDayFive.innerHTML = dayFive;
 
-// if any are bigger than 6, then -6 from result
-// make an array of forecast days and then 
+// if any are bigger than 6, then -6 from result and return day
+// somehow loop through each of the days and ++ the added days each time?
 
 }
 
