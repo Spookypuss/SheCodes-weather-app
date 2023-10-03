@@ -99,8 +99,7 @@ function displayCurrent(response) {
   //console.log(response.data.coordinates);
   let location = document.querySelector("#location-heading");
   location.innerHTML = response.data.city;
-  celciusTemperature = response.data.temperature.current; //updates celcius data (defined as null globally) to response data
-  let temperature = Math.round(celciusTemperature); // gets current temperature and rounds to integer
+  let temperature = Math.round(response.data.temperature.current); // gets current temperature and rounds to integer
   let currentTemperature = document.querySelector("#current-temperature");
   currentTemperature.innerHTML = temperature;
   let description = document.querySelector("#current-description");
@@ -147,32 +146,3 @@ let themeSwitch = document.querySelector("#flexSwitchCheckDefault");
 let theme = document.querySelector("#theme-link");
 
 themeSwitch.addEventListener("click", switchTheme);
-
-//--------------------------------------------
-
-// convert temperature to fahrenheit
-function displayFahrenheit(event) {
-  event.preventDefault();
-  let fahrenheitTemperature = (celciusTemperature * 9) / 5 + 32;
-  let currentTemperature = document.querySelector("#current-temperature");
-  currentTemperature.innerHTML = Math.round(fahrenheitTemperature);
-  celciusLink.classList.remove("active");
-  fahrenheitLink.classList.add("active");
-}
-
-let celciusTemperature = null; //sets to null - updated to response data in displayCurrent function above
-
-let fahrenheitLink = document.querySelector("#to-fahrenheit");
-fahrenheitLink.addEventListener("click", displayFahrenheit);
-
-// switch back to celcius
-function displayCelcius() {
-  let currentTemperature = document.querySelector("#current-temperature");
-  currentTemperature.innerHTML = Math.round(celciusTemperature);
-  celciusLink.classList.add("active");
-  fahrenheitLink.classList.remove("active");
-}
-
-let celciusLink = document.querySelector("#to-celcius");
-celciusLink.addEventListener("click", displayCelcius);
-
