@@ -38,6 +38,31 @@ function formatDate(timestamp) {
   return `${day}, ${hours}:${minutes}`;
 }
 
+function displayForecast() {
+  let forecastElement = document.querySelector("#forecast");
+
+  let forecastHTML = `<div class="row">`;
+  let days = ["Mon", "Tue", "Wed", "Thu", "Fri"];
+
+  days.forEach(function (day) {
+  forecastHTML = forecastHTML + `
+  <div class="col"> 
+    <div class="forecast-day">${day}</div>
+    <img
+        src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/broken-clouds-day.png"
+        alt="Clouds"
+        class="daily-icon day-one-icon"
+      />
+    <div class="forecast-temperatures">
+        <span class="temp-max">19</span>° | <span class="temp-min">10</span>°</div>
+  </div>
+  `;
+  });
+  forecastHTML = forecastHTML + `</div>`;
+
+  forecastElement.innerHTML = forecastHTML;
+}
+
 //how to set the day for forecasts
 function getDays() {
 let now = new Date();
@@ -82,7 +107,7 @@ forecastDayFive.innerHTML = dayFive;
 }
 
 //displays forecast data from response below (getForecast)
-function displayForecast (response) {
+/*function displayForecast (response) {
   let dayOneDaytimeTemp = response.data.daily[0].temperature.day;
   let dayOneNighttimeTemp = response.data.daily[0].temperature.minimum;
   let dayTwoDaytimeTemp = response.data.daily[1].temperature.day;
@@ -130,7 +155,7 @@ function displayForecast (response) {
   let dayFiveIcon = document.querySelector(".day-one-icon");
   dayFiveIcon.setAttribute("src", response.data.daily[4].condition.icon_url);
   dayFiveIcon.setAttribute("alt", response.data.daily[4].condition.description);
-}
+}*/
 
 // fetch forecast data based on coordinates passed by current conditions response
 function getForecast(coordinates) {
@@ -141,7 +166,7 @@ function getForecast(coordinates) {
   let apiKey = "acbbefb303a70144ef2f13t2a94oef9a";
   let url = `https://api.shecodes.io/weather/v1/forecast?lon=${lon}&lat=${lat}&key=${apiKey}`; 
   
-  axios.get(url).then(displayForecast)
+  axios.get(url).then(displayForecast) 
 }
 
 // display response data for current conditions
