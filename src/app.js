@@ -134,6 +134,22 @@ function searchCity(event) {
 let searchForm = document.querySelector("#search-form");
 searchForm.addEventListener("submit", searchCity); // add event listener to switch
 
+// dark mode toggle
+function switchTheme() {
+  if (theme.getAttribute("href") === "src/style.css") {
+    theme.href = "src/style-dark.css"; // if theme is currently light, switch to dark
+  } else {
+    theme.href = "src/style.css"; // else switch to light theme
+  }
+}
+
+let themeSwitch = document.querySelector("#flexSwitchCheckDefault");
+let theme = document.querySelector("#theme-link");
+
+themeSwitch.addEventListener("click", switchTheme);
+
+//--------------------------------------------
+
 // convert temperature to fahrenheit
 function displayFahrenheit(event) {
   event.preventDefault();
@@ -160,16 +176,3 @@ function displayCelcius() {
 let celciusLink = document.querySelector("#to-celcius");
 celciusLink.addEventListener("click", displayCelcius);
 
-// dark mode toggle
-function switchTheme() {
-  if (theme.getAttribute("href") === "src/style.css") {
-    theme.href = "src/style-dark.css"; // if theme is currently light, switch to dark
-  } else {
-    theme.href = "src/style.css"; // else switch to light theme
-  }
-}
-
-let themeSwitch = document.querySelector("#flexSwitchCheckDefault");
-let theme = document.querySelector("#theme-link");
-
-themeSwitch.addEventListener("click", switchTheme);
