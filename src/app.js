@@ -38,124 +38,49 @@ function formatDate(timestamp) {
   return `${day}, ${hours}:${minutes}`;
 }
 
-function displayForecast() {
+//format the forecast day
+function formatDay(timestamp) {
+  let date = new Date(timestamp *1000); // *1000 to convert from ms
+  let day = date.getDay();
+  let days = [
+    "Sun",
+    "Mon",
+    "Tue",
+    "Wed",
+    "Thu",
+    "Fri",
+    "Sat",];
+
+    return days[day];
+}
+
+// Inject HTML and response data for forecast section
+function displayForecast(response) {
+  let forecast = response.data.daily;
   let forecastElement = document.querySelector("#forecast");
 
   let forecastHTML = `<div class="row">`;
-  let days = ["Mon", "Tue", "Wed", "Thu", "Fri"];
 
-  days.forEach(function (day) {
+  forecast.forEach(function (forecastDay, index) {
+  if (index < 6 && index >0) {
   forecastHTML = forecastHTML + `
-  <div class="col"> 
-    <div class="forecast-day">${day}</div>
+  <div class="col" id="weather-forecast-day"> 
+    <div class="forecast-day">${formatDay(forecastDay.time)}</div>
     <img
-        src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/broken-clouds-day.png"
-        alt="Clouds"
+        src="${forecastDay.condition.icon_url}"
+        alt="${forecastDay.condition.description}"
         class="daily-icon day-one-icon"
       />
     <div class="forecast-temperatures">
-        <span class="temp-max">19</span>° | <span class="temp-min">10</span>°</div>
+        <span class="temp-max">${Math.round(forecastDay.temperature.maximum)}</span>° | <span class="temp-min">${Math.round(forecastDay.temperature.minimum)}</span>°</div>
   </div>
   `;
+  }
   });
   forecastHTML = forecastHTML + `</div>`;
 
   forecastElement.innerHTML = forecastHTML;
 }
-
-//how to set the day for forecasts
-function getDays() {
-let now = new Date();
-
-let days = [
-  "Sun",
-  "Mon",
-  "Tue",
-  "Wed",
-  "Thu",
-  "Fri",
-  "Sat",
-  "Sun", //this is a total cheat!
-  "Mon",
-  "Tue",
-  "Wed",
-  "Thu",
-  "Fri",
-  "Sat",
-];
-
-let dayOne = days[now.getDay() + 1];
-let dayTwo = days[now.getDay() + 2];
-let dayThree = days[now.getDay() + 3];
-let dayFour = days[now.getDay() + 4];
-let dayFive = days[now.getDay() + 5];
-
-let forecastDayOne = document.querySelector(".day-one");
-forecastDayOne.innerHTML = dayOne;
-let forecastDayTwo = document.querySelector(".day-two");
-forecastDayTwo.innerHTML = dayTwo;
-let forecastDayThree = document.querySelector(".day-three");
-forecastDayThree.innerHTML = dayThree;
-let forecastDayFour = document.querySelector(".day-four");
-forecastDayFour.innerHTML = dayFour;
-let forecastDayFive = document.querySelector(".day-five");
-forecastDayFive.innerHTML = dayFive;
-
-// if any are bigger than 6, then -6 from result and return day
-// somehow loop through each of the days and ++ the added days each time?
-
-}
-
-//displays forecast data from response below (getForecast)
-/*function displayForecast (response) {
-  let dayOneDaytimeTemp = response.data.daily[0].temperature.day;
-  let dayOneNighttimeTemp = response.data.daily[0].temperature.minimum;
-  let dayTwoDaytimeTemp = response.data.daily[1].temperature.day;
-  let dayTwoNighttimeTemp = response.data.daily[1].temperature.minimum;
-  let dayThreeDaytimeTemp = response.data.daily[2].temperature.day;
-  let dayThreeNighttimeTemp = response.data.daily[2].temperature.minimum;
-  let dayFourDaytimeTemp = response.data.daily[3].temperature.day;
-  let dayFourNighttimeTemp = response.data.daily[3].temperature.minimum;
-  let dayFiveDaytimeTemp = response.data.daily[4].temperature.day;
-  let dayFiveNighttimeTemp = response.data.daily[4].temperature.minimum;
-
-  let dayOneDayTemp = document.querySelector(".day-1-day-temp");
-  dayOneDayTemp.innerHTML = Math.round(dayOneDaytimeTemp);
-  let dayOneNightTemp = document.querySelector(".day-1-night-temp");
-  dayOneNightTemp.innerHTML = Math.round(dayOneNighttimeTemp);
-  let dayTwoDayTemp = document.querySelector(".day-2-day-temp");
-  dayTwoDayTemp.innerHTML = Math.round(dayTwoDaytimeTemp);
-  let dayTwoNightTemp = document.querySelector(".day-2-night-temp");
-  dayTwoNightTemp.innerHTML = Math.round(dayTwoNighttimeTemp);
-  let dayThreeDayTemp = document.querySelector(".day-3-day-temp");
-  dayThreeDayTemp.innerHTML = Math.round(dayThreeDaytimeTemp);
-  let dayThreeNightTemp = document.querySelector(".day-3-night-temp");
-  dayThreeNightTemp.innerHTML = Math.round(dayThreeNighttimeTemp);
-  let dayFourDayTemp = document.querySelector(".day-4-day-temp");
-  dayFourDayTemp.innerHTML = Math.round(dayFourDaytimeTemp);
-  let dayFourNightTemp = document.querySelector(".day-4-night-temp");
-  dayFourNightTemp.innerHTML = Math.round(dayFourNighttimeTemp);
-  let dayFiveDayTemp = document.querySelector(".day-5-day-temp");
-  dayFiveDayTemp.innerHTML = Math.round(dayFiveDaytimeTemp);
-  let dayFiveNightTemp = document.querySelector(".day-5-night-temp");
-  dayFiveNightTemp.innerHTML = Math.round(dayFiveNighttimeTemp);
-
-  let dayOneIcon = document.querySelector(".day-one-icon");
-  dayOneIcon.setAttribute("src", response.data.daily[0].condition.icon_url);
-  dayOneIcon.setAttribute("alt", response.data.daily[0].condition.description);
-  let dayTwoIcon = document.querySelector(".day-one-icon");
-  dayTwoIcon.setAttribute("src", response.data.daily[1].condition.icon_url);
-  dayTwoIcon.setAttribute("alt", response.data.daily[1].condition.description);
-  let dayThreeIcon = document.querySelector(".day-one-icon");
-  dayThreeIcon.setAttribute("src", response.data.daily[2].condition.icon_url);
-  dayThreeIcon.setAttribute("alt", response.data.daily[2].condition.description);
-  let dayFourIcon = document.querySelector(".day-one-icon");
-  dayFourIcon.setAttribute("src", response.data.daily[3].condition.icon_url);
-  dayFourIcon.setAttribute("alt", response.data.daily[3].condition.description);
-  let dayFiveIcon = document.querySelector(".day-one-icon");
-  dayFiveIcon.setAttribute("src", response.data.daily[4].condition.icon_url);
-  dayFiveIcon.setAttribute("alt", response.data.daily[4].condition.description);
-}*/
 
 // fetch forecast data based on coordinates passed by current conditions response
 function getForecast(coordinates) {
@@ -248,5 +173,3 @@ let themeSwitch = document.querySelector("#flexSwitchCheckDefault");
 let theme = document.querySelector("#theme-link");
 
 themeSwitch.addEventListener("click", switchTheme);
-
-getDays()//update day names for forecast days

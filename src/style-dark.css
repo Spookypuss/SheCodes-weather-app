@@ -48,6 +48,14 @@ li:first-letter {
   justify-content: right;
 }
 
+.forecast {
+  text-align: center;
+}
+
+.temp-max {
+  font-weight: 700;
+}
+
 .top-bar {
   padding-bottom: 10px;
 }
@@ -64,6 +72,11 @@ li:first-letter {
   margin: 30px auto;
   max-width: 600px;
   padding: 20px;
+}
+
+.weather-forecast-day {
+  justify-content: center;
+  width: 100%;
 }
 
 .current-icon {
