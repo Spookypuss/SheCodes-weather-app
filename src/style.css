@@ -1,5 +1,6 @@
 /* Bootstrap overwriting*/
 body {
+  background: linear-gradient(109.6deg, rgb(209, 158, 246) 11.2%, rgb(93, 219, 241) 91.1%);
   color: #5d5d5d;
   width: 100%;
 }
@@ -75,10 +76,10 @@ li:first-letter {
 }
 
 .weather-frame {
-  background: radial-gradient(1224px at 10.6% 8.8%, rgb(255, 255, 255) 0%, rgb(153, 202, 251) 100.2%);
+  background: white;
   border: 1px solid #5d5d5d;
   border-radius: 5px;
-  margin: 30px auto;
+  margin: 50px auto;
   max-width: 600px;
   padding: 20px;
 }
